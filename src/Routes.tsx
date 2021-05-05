@@ -9,36 +9,33 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 //Screens
-// import QuestionsListScreen from './screens/QuestionsListScreen';
-// import DetailScreen from './screens/DetailScreen';
+import CitiesListScreen from './screens/CitiesListScreen';
+import DetailWeather from './screens/DetailWeather';
 
 const Routes = props => {
   const Stack = createStackNavigator();
 
-  //   const mainStack = () => {
-  //     return (
-  //       <Stack.Navigator>
-  //         <Stack.Screen
-  //           name="QuestionsListScreen"
-  //           component={QuestionsListScreen}
-  //           options={{headerShown: false}}
-  //         />
-  //         <Stack.Screen
-  //           name="DetailScreen"
-  //           component={DetailScreen}
-  //           options={{headerShown: false}}
-  //         />
-  //       </Stack.Navigator>
-  //     );
-  //   };
+  const mainStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="CitiesListScreen"
+          component={CitiesListScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="DetailWeather"
+          component={DetailWeather}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    );
+  };
 
   return (
     <>
       <NavigationContainer>
-        {/* <>{mainStack()}</> */}
-        <View>
-          <Text>Teste</Text>
-        </View>
+        <>{mainStack()}</>
       </NavigationContainer>
     </>
   );
