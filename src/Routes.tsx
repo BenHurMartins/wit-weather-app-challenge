@@ -10,7 +10,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 //Screens
 import CitiesListScreen from './screens/CitiesListScreen';
-import DetailWeather from './screens/DetailWeather';
+import DetailWeatherScreen from './screens/DetailWeatherScreen';
 
 const Routes = props => {
   const Stack = createStackNavigator();
@@ -24,8 +24,8 @@ const Routes = props => {
           options={{headerShown: false}}
         />
         <Stack.Screen
-          name="DetailWeather"
-          component={DetailWeather}
+          name="DetailWeatherScreen"
+          component={DetailWeatherScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

@@ -50,3 +50,7 @@ export interface CityWeather {
   weather: Array<Weather>;
   wind: Wind;
 }
+
+export interface CityWeatherRouteParameter {
+  cityWeather: CityWeather;
+}

@@ -28,7 +28,6 @@ const CitiesListScreen = () => {
   const getWeathers = async () => {
     const weathers = await getCitiesWeather(cities);
     setCitiesWeather(weathers);
-    console.log(weathers);
   };
 
   return (
@@ -37,7 +36,12 @@ const CitiesListScreen = () => {
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           {citiesWeather.map(city => {
             return (
-              <Text>
+              <Text
+                onPress={() =>
+                  navigation.navigate('DetailWeatherScreen', {
+                    cityWeather: city,
+                  })
+                }>
                 {city.name} - {city.weather[0].description} - {city.main.temp}
               </Text>
             );
