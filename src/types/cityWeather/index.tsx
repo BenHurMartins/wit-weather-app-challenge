@@ -15,8 +15,8 @@ export interface Main {
 export interface Sys {
   country: string;
   id: number;
-  sunrise: Date;
-  sunset: Date;
+  sunrise: number;
+  sunset: number;
   type: number;
 }
 

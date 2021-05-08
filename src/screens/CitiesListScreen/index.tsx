@@ -1,9 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, SafeAreaView, Alert} from 'react-native';
+import {View, StyleSheet, ActivityIndicator, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {getCitiesWeather, getWeatherByLocation} from '../../api';
 import {CityWeather} from '../../types/cityWeather';
 import Geolocation from '@react-native-community/geolocation';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import ListItem from '../../components/ListItem';
+import Header from '../../components/Header';
+import {Colors, Dimensions} from '../../constants';
+import {ScrollView} from 'react-native-gesture-handler';
+
+Icon.loadFont();
 
 const CitiesListScreen = () => {
   const navigation = useNavigation();
@@ -52,36 +59,40 @@ const CitiesListScreen = () => {
 
   return (
     <>
-      <SafeAreaView style={{flex: 1}}>
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <Text>Weather</Text>
-          {localWeather ? (
-            <Text
-              onPress={() =>
-                navigation.navigate('DetailWeatherScreen', {
-                  cityWeather: localWeather,
-                })
-              }>
-              {localWeather.name} - {localWeather.weather[0].description} -{' '}
-              {localWeather.main.temp}
-            </Text>
-          ) : null}
-          {citiesWeather.map(city => {
-            return (
-              <Text
-                onPress={() =>
-                  navigation.navigate('DetailWeatherScreen', {
-                    cityWeather: city,
-                  })
-                }>
-                {city.name} - {city.weather[0].description} - {city.main.temp}
-              </Text>
-            );
-          })}
+      <View style={styles.container}>
+        <View style={{position: 'absolute', top: 0, zIndex: 2000}}>
+          <Header title={'Clima'} />
         </View>
-      </SafeAreaView>
+        {localWeather || citiesWeather.length > 0 ? (
+          <ScrollView contentContainerStyle={styles.listContainer}>
+            {localWeather ? (
+              <ListItem cityWeather={localWeather} isLocal />
+            ) : null}
+            {citiesWeather.map(city => {
+              return <ListItem cityWeather={city} />;
+            })}
+          </ScrollView>
+        ) : (
+          <ActivityIndicator color={Colors.darkBlue} size={'large'} />
+        )}
+      </View>
     </>
   );
 };
 
 export default CitiesListScreen;
+
+const styles = StyleSheet.create({
+  safeAreaContainer: {flex: 1, backgroundColor: Colors.background},
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  listContainer: {
+    paddingTop: Dimensions.headerHeight + 10,
+    width: Dimensions.maxWidth,
+    alignItems: 'center',
+    // marginTop: -40,
+  },
+});

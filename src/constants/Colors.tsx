@@ -1,7 +1,10 @@
-export const white = '#fffcf9';
-export const grey = '#565857';
+export const white = '#fdf7ec';
+export const background = '#D8D5DB';
+export const red = '#ff5154';
+export const redSemiOpacity = 'rgba(255, 81, 84, 0.9)';
+export const redOpacity = 'rgba(255, 81, 84, 0.8)';
+export const darkBlue = '#424861';
+export const darkBlueSemiOpacity = 'rgba(66, 72, 97, 0.9)';
+export const darkBlueOpacity = 'rgba(66, 72, 97, 0.8)';
+export const blue = '#b0d7ff';
 export const black = '#011010';
-export const violet = '#0B0033';
-export const primaryColor = '#4447f7';
-export const secondaryColor = '#228f95';
-export const warningColor = '#f7b32b';
